@@ -20,6 +20,7 @@ upload_ui <- function(id) {
       open = "desktop",
       
       h3("Upload & Profiling"),
+      uiOutput(ns("howto_btn_ui")),
       helpText("Upload a CSV file. This section is UI only; processing will be connected later."),
       
       fileInput(

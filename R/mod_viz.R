@@ -15,7 +15,7 @@ viz_ui <- function(id) {
     tags$span("?", title = text, class = "help-icon")
   }
   
-  # Helper para las tarjetitas de métricas (lo dejo por si luego lo usas)
+  # Helper para métricas
   metric_card <- function(title, label, desc) {
     div(
       class = "p-3 mb-3 bg-light rounded-3 shadow-sm h-100",
@@ -89,7 +89,7 @@ viz_ui <- function(id) {
                 
                 tags$hr(),
                 
-                # ======= NUEVO: guía en un solo renglón por métrica, dentro de accordion =======
+                # ======= Guía en un solo renglón por métrica, dentro de accordion =======
                 bslib::accordion(
                   id = ns("viz_metric_help"),
                   bslib::accordion_panel(

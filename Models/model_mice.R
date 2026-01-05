@@ -12,7 +12,7 @@ run_mice_imputation <- function(
     data,
     model_code,
     m             = 5L,
-    maxit         = 10L,   # aquí ya NO se usa, pero lo dejamos por compatibilidad
+    maxit         = 10L,
     knn_neighbors = 5L,
     bpca_ncomp    = 2L,
     ls_tol        = 1e-4
@@ -29,7 +29,7 @@ run_mice_imputation <- function(
   }
   
   # --------------------------------------------------------------------------
-  # 1) Imputación base con tus modelos single-imputation
+  # 1) Imputación base con modelos single-imputation
   # --------------------------------------------------------------------------
   impute_base <- switch(
     model_code,

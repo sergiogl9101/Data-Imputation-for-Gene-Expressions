@@ -25,6 +25,20 @@ impute_server <- function(id) {
       df
     }
     
+    # ===== How-to video (embed helper) =====
+    tutorial_iframe <- function(embed_url) {
+      tags$div(
+        style = "position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;",
+        tags$iframe(
+          src = embed_url,
+          style = "position:absolute;top:0;left:0;width:100%;height:100%;",
+          frameborder = "0",
+          allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+          allowfullscreen = NA
+        )
+      )
+    }
+    
     # ===== Definición de modelos disponibles (UI) =====
     # Single imputation (sin MICE)
     stat_plain_choices <- c(
@@ -208,6 +222,18 @@ impute_server <- function(id) {
     output$imp_recommended_method <- renderText({
       rv_imp$recommended_method %||% "No method recommended yet."
     })
+    
+    # ===== How-to button in sidebar (UI comes from server) =====
+    output$howto_btn_ui <- renderUI({
+      actionButton(
+        inputId = ns("howto_imputation"),
+        label   = "HOW TO USE THIS MODULE",
+        icon    = icon("circle-play"),
+        class   = "btn btn-link",
+        style   = "padding-left:0;"
+      )
+    })
+    
     
     output$imp_recommendation_reason <- renderText({
       rv_imp$recommendation_reason %||%
@@ -574,6 +600,18 @@ impute_server <- function(id) {
         duration = 8
       )
     })
+    
+    # ===== How-to video modal (single video for Imputation) =====
+    observeEvent(input$howto_imputation, {
+      showModal(modalDialog(
+        title = "How to use: Imputation",
+        tutorial_iframe("https://www.youtube.com/embed/ihBd7JfjUUQ"),
+        easyClose = TRUE,
+        size = "l",
+        footer = modalButton("Close")
+      ))
+    })
+    
     
     
     # ===== UI de hiperparámetros según modelo seleccionado =====

@@ -30,6 +30,10 @@ transform_ui <- function(id) {
       # CONTENIDO CON SCROLL
       div(class = "tfm-scroll",
           
+          # --- How-to button (dynamic, from server) ---
+          uiOutput(ns("howto_btn_ui")),
+          
+          
           # Informational message
           div(
             class = "alert alert-info",
@@ -119,6 +123,7 @@ transform_ui <- function(id) {
       # ==== BEFORE vs AFTER (always 2 plots: all data) ====
       shiny::tabPanel(
         title = "Before vs After",
+        value = "before_after",
         # Controls
         shiny::fluidRow(
           shiny::column(
@@ -159,7 +164,6 @@ transform_ui <- function(id) {
             )
           )
         ),
-        # Comparison Z-score vs Yeo–Johnson (only if applied together)
         shiny::fluidRow(
           shiny::column(
             width = 12,
@@ -174,6 +178,7 @@ transform_ui <- function(id) {
       # ==== SUMMARY (AFTER) ====
       shiny::tabPanel(
         title = "Summary (after)",
+        value = "summary_after",
         
         # --- CTA banner to go to Explore & Selection ---
         shiny::fluidRow(

@@ -11,7 +11,7 @@ options(shiny.maxRequestSize = 200 * 1024^2)
 source("R/mod_upload.R",    local = TRUE, encoding = "UTF-8")
 source("R/mod_transform.R", local = TRUE, encoding = "UTF-8")
 source("R/mod_impute.R",    local = TRUE, encoding = "UTF-8")
-source("R/mod_viz.R",       local = TRUE, encoding = "UTF-8")   # <<< NEW
+source("R/mod_viz.R",       local = TRUE, encoding = "UTF-8")
 
 # --- Helpers/Bindings para Statistical Summary ---
 if (file.exists("server/stat_summary_bindings.R")) {
@@ -30,7 +30,7 @@ if (file.exists("server/mod_transform_server.R")) {
 if (file.exists("server/mod_impute_server.R")) {
   source("server/mod_impute_server.R",   local = TRUE, encoding = "UTF-8")
 }
-if (file.exists("server/mod_viz_server.R")) {                     # <<< NEW
+if (file.exists("server/mod_viz_server.R")) {                     
   source("server/mod_viz_server.R", local = TRUE, encoding = "UTF-8")
 }
 
@@ -89,13 +89,13 @@ server <- function(input, output, session) {
     z_df           = NULL,
     yj_df          = NULL,
     impute_payload = NULL,
-    viz_payload    = NULL   # ya lo tenías, perfecto para pasar a viz
+    viz_payload    = NULL
   )
   
   if (exists("upload_server"))    upload_server("upload")
   if (exists("transform_server")) transform_server("transform")
   if (exists("impute_server"))    impute_server("impute")
-  if (exists("viz_server"))       viz_server("viz")   # <<< NEW
+  if (exists("viz_server"))       viz_server("viz")
   
   # Helper de navegación
   nav_to <- function(value_or_title) {

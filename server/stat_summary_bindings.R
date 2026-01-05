@@ -7,15 +7,11 @@ bind_stat_summary <- function(output, raw_react = NULL, processed_react = NULL, 
   
   # Back-compat: mapear argumentos antiguos si vinieron
   if (is.null(raw_react)) {
-    # si mandaron data_react pensando en "todo crudo", úsalo para raw
     if (!is.null(dots$data_react)) raw_react <- dots$data_react
   }
   if (is.null(processed_react)) {
-    # si mandaron processed_react explícito, úsalo
     if (!is.null(dots$processed_react)) processed_react <- dots$processed_react
-    # si no, intenta con num_df (antes lo usábamos para numerizado)
     if (is.null(processed_react) && !is.null(dots$num_df)) processed_react <- dots$num_df
-    # último recurso: si sólo existe data_react, úsalo como processed también
     if (is.null(processed_react) && !is.null(dots$data_react)) processed_react <- dots$data_react
   }
   
@@ -164,9 +160,8 @@ bind_stat_summary <- function(output, raw_react = NULL, processed_react = NULL, 
     # Keep stable Y order but ensure tooltip shows text
     row_levels <- unique(RowLabel)
     dfh$RowLabel <- factor(dfh$RowLabel, levels = row_levels)
-    dfh$.RowText <- as.character(dfh$RowLabel)  # text copy for tooltip
+    dfh$.RowText <- as.character(dfh$RowLabel)
     
-    # Optional: lock color range to global min/max for stable colors
     vmin <- suppressWarnings(min(dfh$value, na.rm = TRUE)); if (!is.finite(vmin)) vmin <- 0
     vmax <- suppressWarnings(max(dfh$value, na.rm = TRUE)); if (!is.finite(vmax)) vmax <- 1
     

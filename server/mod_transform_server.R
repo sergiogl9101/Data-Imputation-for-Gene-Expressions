@@ -18,6 +18,73 @@ transform_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     
+    # ---------- HOW TO (Transform) | same pattern as Upload ----------
+    
+    # 1) Helper: YouTube iframe (embed)
+    tutorial_iframe <- function(embed_url) {
+      tags$div(
+        style = "position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;",
+        tags$iframe(
+          src = embed_url,
+          style = "position:absolute;top:0;left:0;width:100%;height:100%;",
+          frameborder = "0",
+          allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+          allowfullscreen = NA
+        )
+      )
+    }
+    
+    # 2) Map: tab -> label + embed url
+    howto_map <- list(
+      before_after = list(
+        label = "How to use: Before vs After",
+        url   = "https://www.youtube.com/embed/Q3-cChcOjpI"
+      ),
+      summary_after = list(
+        label = "How to use: Summary (after)",
+        url   = "https://www.youtube.com/embed/m2RF7QfIYYY"
+      )
+    )
+    
+    # 3) Track current section (tab)
+    howto_current_key <- reactiveVal("before_after")
+    
+    observeEvent(input$tfm_tabs, {
+      key <- input$tfm_tabs
+      if (!is.null(key) && nzchar(key) && !is.null(howto_map[[key]])) {
+        howto_current_key(key)
+      }
+    }, ignoreInit = FALSE)
+    
+    # 4) Render ONE button, but with dynamic label
+    output$howto_btn_ui <- renderUI({
+      key <- howto_current_key()
+      item <- howto_map[[key]] %||% howto_map[["before_after"]]
+      
+      actionButton(
+        inputId = ns("howto_btn"),
+        label   = item$label,
+        icon    = icon("circle-play"),
+        class   = "btn btn-info w-100",
+        style   = "white-space: normal; text-align: left;"
+      )
+    })
+    
+    # 5) On click: open the modal with the correct video
+    observeEvent(input$howto_btn, {
+      key <- howto_current_key()
+      item <- howto_map[[key]] %||% howto_map[["before_after"]]
+      
+      showModal(modalDialog(
+        title = item$label,
+        tutorial_iframe(item$url),
+        easyClose = TRUE,
+        size = "l",
+        footer = modalButton("Close")
+      ))
+    })
+    
+    
     # ------------------ Helpers ------------------
     .deep_copy <- function(d) {
       if (is.null(d)) return(NULL)

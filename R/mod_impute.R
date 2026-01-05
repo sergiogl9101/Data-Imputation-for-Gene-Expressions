@@ -28,6 +28,8 @@ impute_ui <- function(id) {
         width = 4,
         h4("Imputation Models Selection"),
         
+        uiOutput(ns("howto_btn_ui")),
+        
         selectInput(
           ns("imp_model_category"),
           label = "Select Model Category",

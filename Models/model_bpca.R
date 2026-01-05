@@ -26,7 +26,7 @@ impute_bpca <- function(data, cols = NULL, ncomp = 2, center = TRUE, scale = "uv
   if (!is.finite(k_max) || k_max < 1L) k_max <- 1L
   if (ncomp > k_max) ncomp <- k_max
   
-  # 👉 Mensaje informativo en consola
+  # Mensaje informativo en consola
   message(
     sprintf(
       "[Imputation] Método: BPCA (pcaMethods::pca, method = 'bpca') | ncomp usado = %d | n = %d, p = %d",
