@@ -124,8 +124,9 @@ viz_ui <- function(id) {
                         tags$li(
                           HTML("<strong>R²</strong> – "),
                           tags$em("Coefficient of determination"), ": ",
-                          "Proportion of variance in the true values explained by the imputed values. ",
-                          "Close to 1 = high agreement; near 0 = poor fit."
+                          "Measures how well the imputed values reconstruct the masked true values during validation.",
+                          "Values close to 1 indicate strong agreement between real and imputed data;",
+                          "values near 0 indicate poor reconstruction."
                         ),
                         
                         tags$li(
