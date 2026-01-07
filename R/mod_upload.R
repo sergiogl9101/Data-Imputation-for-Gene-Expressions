@@ -142,7 +142,7 @@ upload_ui <- function(id) {
                 div(
                   tags$strong("Tip:"),
                   " Once you explore a protein, jump to the ",
-                  tags$em("Transformación"),
+                  tags$em("Transformation"),
                   " tab to normalize or power-transform your data."
                 ),
                 actionButton(ns("go_transform_btn"),

@@ -5,7 +5,7 @@ account: sergiogl
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 16276717
-bundleId: 11402140
+bundleId: 11410745
 url: https://sergiogl.shinyapps.io/data-imputation-gene-expressions/
 version: 1
 asMultiple: FALSE
