@@ -472,7 +472,7 @@ upload_server <- function(id) {
       (function(){
         var navId   = 'main_nav';
         var value   = 'transform_tab';
-        var titleTx = 'Transformación';
+        var titleTx = 'Transformation';
 
         function log(msg){ try{ console.log('[go_transform]', msg); }catch(e){} }
 
