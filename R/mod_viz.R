@@ -34,7 +34,18 @@ viz_ui <- function(id) {
     
     # ===== SIDEBAR =====
     sidebar = bslib::sidebar(
-      title       = "Visualization",
+      title = div(
+        tags$div("Visualization", class = "fw-bold"),
+        tags$div(
+          style = "margin-top: 8px;",
+          actionButton(
+            inputId = ns("viz_video_btn"),
+            label   = "Video guide",
+            icon    = icon("circle-play"),
+            class   = "btn btn-outline-primary w-100"
+          )
+        )
+      ),
       width       = 300,
       collapsible = TRUE,
       open        = "desktop",

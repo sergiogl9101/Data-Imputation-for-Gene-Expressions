@@ -639,6 +639,26 @@ viz_server <- function(id) {
       }
     )
     
+    # ---------- Video guide (same pattern as other modules) ----------
+    observeEvent(input$viz_video_btn, {
+      showModal(
+        modalDialog(
+          title = "Visualization — Evaluation & Diagnostics (Video guide)",
+          easyClose = TRUE,
+          size = "l",
+          footer = modalButton("Close"),
+          tags$div(
+            style = "position:relative; padding-top:56.25%;",
+            tags$iframe(
+              src = "https://www.youtube.com/embed/yKl1uL6SEts",
+              style = "position:absolute; top:0; left:0; width:100%; height:100%; border:0;",
+              allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+              allowfullscreen = NA
+            )
+          )
+        )
+      )
+    })
     
     
   })
